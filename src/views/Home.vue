@@ -22,7 +22,7 @@
                             <h1 class="hero-title mt-0 is-revealing">Video consultation for retailers</h1>
                             <p class="hero-paragraph is-revealing">Bring your expertise from the store to your customers home</p>
                             <p class="hero-cta mb-0 is-revealing">
-                                <a class="button button-primary button-shadow" href="#">Get started free</a>
+                                <a class="button button-primary button-shadow" href="#/admin">Get started free</a>
                             </p>
                         </div>
                         <div class="hero-illustration">
@@ -196,7 +196,7 @@
                     <div class="cta-inner section-inner is-revealing">
                         <h3 class="section-title mt-0">Still not convinced?</h3>
                         <div class="cta-cta">
-                            <a class="button button-primary button-shadow" href="#">Schedule a live demo</a>
+                            <a class="button button-primary button-shadow" href="mailto:info@adriankrebs.ch">Schedule a live demo</a>
                         </div>
                     </div>
                 </div>
