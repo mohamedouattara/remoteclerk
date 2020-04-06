@@ -5,8 +5,8 @@
                 <div class="site-header-inner">
                     <div class="brand header-brand">
                         <h1 class="m-0">
-
                         </h1>
+                        <img src="@/assets/logo.png" class="logo-img"/>
                     </div>
                 </div>
             </div>
