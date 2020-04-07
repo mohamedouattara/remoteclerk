@@ -1,17 +1,5 @@
 <template>
-    <div class="body-wrap boxed-container">
-        <header class="site-header">
-            <div class="container">
-                <div class="site-header-inner">
-                    <div class="brand header-brand">
-                        <h1 class="m-0">
-                        </h1>
-                        <img src="@/assets/logo.png" class="logo-img"/>
-                    </div>
-                </div>
-            </div>
-        </header>
-
+    <div>
         <main>
             <section class="hero">
                 <div class="hero-left-decoration is-revealing"></div>
@@ -38,9 +26,9 @@
                                 <h2 class="section-title mt-0">Problem</h2>
                                 <p class="section-paragraph mb-0">Covid-19 is going to push the retail marketplace faster than it has been
                                     moving
-                                    toward a more remote experience. Stores and showrooms are closed but online shops still open. However,
-                                    consultation-intensive businesses like furniture or
-                                    sports gear are not typical online items.</p>
+                                    toward a more remote experience. Stores and showrooms are closed but online shops are still open.
+                                    However, product categories like furniture or sports gear usually require consultation by an experienced
+                                    shop-employee before the purchase. </p>
                             </div>
                         </div>
                     </div>
@@ -56,7 +44,7 @@
                                     <h2>❌ </h2>
                                     <h4 class="feature-title">No App installation</h4>
                                     <p class="text-sm">No app installation needed - everything is web-based. Works on smartphonse,
-                                    tablet and desktop.</p>
+                                        tablet and desktop.</p>
                                 </div>
                             </div>
                             <div class="feature is-revealing">

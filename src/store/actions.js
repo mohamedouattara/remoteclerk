@@ -3,13 +3,12 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 
-
 const setUserDetails = ({commit}, user) => {
     commit('LOGIN', true);
     commit('USER', user);
 };
 
-const logout = ({commit, dispatch}) => {
+const logout = ({commit}) => {
     firebase.auth().signOut().then(() => {
         commit('USER', {});
         commit('LOGOUT');
@@ -24,12 +23,14 @@ const setLoggedIn = ({commit}, isLoggedIn) => {
 };
 
 const registerCompany = ({state}, company) => {
-    const docRef = firebase.firestore().collection('companies');
-    const upvotesForUser = docRef.doc(company.id);
-    if (upvotesForUser) {
-        upvotesForUser.collection('admin').set(state.user.uid);
-    }
-}
+    return new Promise((resolve, reject) => {
+        const docRef = firebase.firestore().collection('companies');
+        company.users = [state.user.uid];
+        docRef.doc(company.id).set(company).then(() => {
+            resolve();
+        }).catch(error => reject(error));
+    });
+};
 
 
 export default {

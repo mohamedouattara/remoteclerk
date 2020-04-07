@@ -1,15 +1,16 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/call">Call</router-link> |
-      <router-link to="/admin">Admin</router-link>
+    <div id="app">
+        <div class="body-wrap boxed-container">
+        <page-header></page-header>
+            <router-view/>
+        </div>
     </div>
-    <router-view/>
-  </div>
 </template>
 <script>
-
+    import PageHeader from "./components/PageHeader";
+    export default {
+        components: {PageHeader}
+    }
 </script>
 
 <style lang="scss">

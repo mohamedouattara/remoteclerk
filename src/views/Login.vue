@@ -1,21 +1,15 @@
 <template>
-    <div class="body-wrap boxed-container">
         <div class="container">
             <section class="hero">
                 <b-row class="justify-content-center">
                     <b-col class="col-md-6">
-                        <h2 class="headline">Join us!</h2>
-                        <div class="benefits">
-                            <div>
-                                <h3>Bring the shoping experience from your store to the customers home</h3>
-                            </div>
-                        </div>
+                        <h1 class="hero-title mt-0 is-revealing">Join us!</h1>
+                        <p class="hero-paragraph is-revealing">Bring the shoping experience from your store to the customers home</p>
+                        <div id="firebaseui-auth-container"></div>
                     </b-col>
                 </b-row>
-                <div id="firebaseui-auth-container"></div>
             </section>
         </div>
-    </div>
 </template>
 
 <script>
@@ -35,7 +29,8 @@
                 'callbacks': {
                     // Called when the user has been successfully signed in.
                     'signInSuccessWithAuthResult': (authInfo) => {
-
+                        this.setUserDetails(authInfo.user);
+                        this.setLoggedIn(true);
                         if (authInfo.additionalUserInfo) {
                             console.log(authInfo.additionalUserInfo.isNewUser ?
                                 'New User' : 'Existing User');
@@ -45,8 +40,7 @@
                             }
 
                         }
-                        // this.setUserDetails(authInfo.user);
-                        // this.setLoggedIn(true);
+
                         router.push('/');
 
 

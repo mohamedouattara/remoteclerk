@@ -1,5 +1,4 @@
 <template>
-    <div class="body-wrap boxed-container">
         <div class="container">
             <section class="hero">
                 <b-row>
@@ -64,17 +63,17 @@
                 </div>
             </section>
         </div>
-    </div>
 </template>
 
 <script>
     import Logs from "../components/Logs";
     import Video from "../components/Video";
     import {EventBus} from '../Event';
-    import firebase from 'firebase/app';
     import 'firebase/auth';
     import 'firebase/firestore';
     import {mapActions} from "vuex";
+    import {v4 as uuidv4} from 'uuid';
+    import router from '@/router';
 
     export default {
         name: "Registration",
@@ -101,7 +100,10 @@
                 EventBus.$emit('show_room', room);
             },
             creatCompany() {
-                this.registerCompany(this.company);
+                this.company.id = uuidv4();
+                this.registerCompany(this.company).then(() => {
+                    router.push('/');
+                });
             }
         }
 
