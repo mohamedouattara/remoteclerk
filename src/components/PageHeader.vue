@@ -15,6 +15,9 @@
                         <router-link tag="button" v-if="!loggedIn && $route.path !== '/login'" class="button button-sm button-shadow"
                                      to="/login">Login
                         </router-link>
+                        <router-link tag="button" v-if="loggedIn" class="button button-sm button-shadow"
+                                     to="/cockpit">Cockpit
+                        </router-link>
 
                         <b-nav-item-dropdown right v-if="loggedIn">
                             <!-- Using 'button-content' slot -->

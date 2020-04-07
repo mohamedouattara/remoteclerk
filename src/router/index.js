@@ -14,22 +14,27 @@ const routes = [
     {
         path: '/call',
         name: 'Call',
-        component: () => import(/* webpackChunkName: "about" */ '../views/Call.vue')
+        component: () => import('../views/Call.vue')
+    },
+    {
+        path: '/cockpit',
+        name: 'Cockpit',
+        component: () => import('../views/Cockpit.vue')
     },
     {
         path: '/admin',
         name: 'Admin',
-        component: () => import(/* webpackChunkName: "about" */ '../views/Admin.vue')
+        component: () => import('../views/Admin.vue')
     },
     {
         path: '/login',
         name: 'Login',
-        component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+        component: () => import('../views/Login.vue')
     },
     {
         path: '/registration',
         name: 'Registration',
-        component: () => import(/* webpackChunkName: "about" */ '../views/Registration.vue')
+        component: () => import('../views/Registration.vue')
     },
     {
         path: '/profile',
