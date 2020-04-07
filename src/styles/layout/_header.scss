@@ -3,10 +3,10 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+  z-index: 99;
 
 
   button {
-    z-index:99;
     background-color: #2a3642;
     color: white !important;
   }

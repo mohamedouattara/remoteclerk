@@ -32,10 +32,18 @@ const registerCompany = ({state}, company) => {
     });
 };
 
+const loadCompany = ({commit, state}) => {
+    firebase.firestore().collection("companies").where('users', 'array-contains-any', [state.user.uid]).get().then((querySnapshot) => {
+        commit('COMPANY', querySnapshot.docs.map(d => d.data())[0]);
+    });
+
+};
+
 
 export default {
     logout,
     setUserDetails,
     setLoggedIn,
     registerCompany,
+    loadCompany
 }
