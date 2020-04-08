@@ -62,7 +62,7 @@ app.use(cors(corsOptions));
  * Default to the Quick Start application.
  */
 app.get('/', (request, response) => {
-    response.redirect('/quickstart');
+    response.redirect('/test');
 });
 
 
