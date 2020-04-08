@@ -75,6 +75,13 @@
                                     <p class="text-sm">Offer your expertise to the people at home even if your store is already closed</p>
                                 </div>
                             </div>
+                            <div class="feature is-revealing">
+                                <div class="feature-inner">
+                                    <h2>👨‍💼</h2>
+                                    <h4 class="feature-title">Availability check</h4>
+                                    <p class="text-sm">Let customers know when all of your store clerks are busy.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,55 +132,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pricing-faqs container-sm is-revealing">
-                            <h4 class="mt-40 mb-32">FAQs</h4>
-                            <ul class="accordion">
-                                <li>
-                                    <div class="accordion-title">
-                                        <span>In a professional context it often happens that private?</span>
-                                        <div class="accordion-icon"></div>
-                                    </div>
-                                    <div class="accordion-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                            labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="accordion-title">
-                                        <span>Lorem ipsum dolor sit amet, consectetur</span>
-                                        <div class="accordion-icon"></div>
-                                    </div>
-                                    <div class="accordion-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                            labore et dolore magna aliqua. Ut enim ad minim veniam. Ut enim ad minim veniam semper. Lorem
-                                            ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="accordion-title">
-                                        <span>In a professional context it often happens that private?</span>
-                                        <div class="accordion-icon"></div>
-                                    </div>
-                                    <div class="accordion-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                            labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="accordion-title">
-                                        <span>Lorem ipsum dolor sit amet, consectetur</span>
-                                        <div class="accordion-icon"></div>
-                                    </div>
-                                    <div class="accordion-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                            labore et dolore magna aliqua. Ut enim ad minim veniam. Ut enim ad minim veniam semper. Lorem
-                                            ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua.</p>
-                                    </div>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
