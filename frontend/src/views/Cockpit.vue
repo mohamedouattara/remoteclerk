@@ -18,20 +18,27 @@
                                 {{c.id}}
                             </td>
                             <td>
-                                <button class="button button-primary button-shadow">Answer call</button>
+                                <button class="button button-primary button-shadow" @click="showRoom(c.id)">Answer call</button>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            <div class="row">
+                <Video username="admin"/>
+                <Logs></Logs>
+            </div>
         </section>
     </div>
 </template>
 
 <script>
-
+    import {EventBus} from '../Event'
+    import Video from "../components/Video";
+    import Logs from "../components/Logs";
     export default {
+        components: {Video, Logs},
         data() {
             return {
                 rooms: [{id: 'asdakdaödajda', time: '12:00'}]
@@ -46,7 +53,12 @@
                 this.rooms.push(data);
                 console.log(JSON.stringify(data))
             }
-        }
+        },
+        methods: {
+            showRoom(room) {
+                EventBus.$emit('show_room', room);
+            },
+        },
     }
 </script>
 
