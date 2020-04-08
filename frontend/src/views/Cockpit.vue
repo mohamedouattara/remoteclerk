@@ -13,7 +13,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="c in calls" v-bind:key="c.id">
+                        <tr v-for="c in rooms" v-bind:key="c.id">
                             <td>
                                 {{c.id}}
                             </td>
@@ -34,9 +34,19 @@
     export default {
         data() {
             return {
-                calls: [{id: 'asdakdaödajda', time: '12:00'}]
+                rooms: [{id: 'asdakdaödajda', time: '12:00'}]
             }
         },
+        sockets: {
+            connect: () => {
+                console.log('socket connected')
+            },
+            client_room_created: function (data) {
+                console.log('received new room');
+                this.rooms.push(data);
+                console.log(JSON.stringify(data))
+            }
+        }
     }
 </script>
 

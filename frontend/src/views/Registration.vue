@@ -84,16 +84,6 @@
                 company: {name: null, email: null}
             }
         },
-        sockets: {
-            connect: () => {
-                console.log('socket connected')
-            },
-            client_room_created: function (data) {
-                console.log('received new room');
-                this.rooms.push(data);
-                console.log(JSON.stringify(data))
-            }
-        },
         methods: {
             ...mapActions(['registerCompany']),
             showRoom(room) {

@@ -62,9 +62,9 @@
             async getAccessToken(room_name) {
                 console.log('fetching access token');
                 if (this.username !== 'admin') {
-                    return await axios.get(`http://localhost:3000/token?roomName=${room_name}&userType=client`);
+                    return await axios.get(`http://localhost:3000/token?id=${room_name}&userType=client`);
                 } else {
-                    return await axios.get(`http://localhost:3000/token?roomName=${room_name}&userType=admin`);
+                    return await axios.get(`http://localhost:3000/token?id=${room_name}&userType=admin`);
                 }
             },
             // Trigger log events

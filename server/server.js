@@ -9,6 +9,7 @@
  * process.env.TWILIO_API_SECRET
  */
 require('dotenv').load();
+const { v4: uuidv4 } = require('uuid');
 
 const videoController = require('./app/controllers/video.controller');
 
@@ -74,8 +75,9 @@ app.get('/test', videoController.test);
  * parameter.
  */
 app.get('/token', function (request, response) {
-    var identity = request.query.identity;
-    var roomName = request.query.roomName;
+    var identity = request.query.identity || uuidv4();
+    console.log('identity is ' + identity);
+    var id = request.query.id;
     var userType = request.query.userType;
 
     // Create an access token which we will sign and return to the client,
@@ -101,7 +103,8 @@ app.get('/token', function (request, response) {
 
     // Serialize the token to a JWT string and include it in a JSON response.
     if (userType === 'client') {
-        io.emit('client_room_created', {name: roomName}); // This will emit the event to all connected sockets
+
+        io.emit('client_room_created', {id: id}); // This will emit the event to all connected sockets
     }
 
     response.send({
@@ -127,7 +130,7 @@ io.on('connection', function (socket) {
     });
 });
 
-app.listen(app.get('port'), () => {
+http.listen(app.get('port'), () => {
     console.log('App is running at http://localhost:'+app.get('port'));
     console.log('  Press CTRL-C to stop\n');
 });
