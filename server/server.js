@@ -22,7 +22,7 @@ const mongoose = require('mongoose');
 var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
-
+app.set('port', process.env.PORT || 3000)
 
 // Max. period that a Participant is allowed to be in a Room (currently 14400 seconds or 4 hours)
 const MAX_ALLOWED_SESSION_DURATION = 14400;
@@ -127,7 +127,7 @@ io.on('connection', function (socket) {
     });
 });
 
-http.listen(process.env.PORT || 3000, function () {
-    console.log('listening' + process.env.PORT || 3000);
+app.listen(app.get('port'), () => {
+    console.log('App is running at http://localhost:'+app.get('port'));
+    console.log('  Press CTRL-C to stop\n');
 });
-
