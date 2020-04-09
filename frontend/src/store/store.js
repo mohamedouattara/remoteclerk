@@ -18,7 +18,8 @@ export default new Vuex.Store({
         key: 'remoteclerk',
         paths: [
             'user',
-            'loggedIn'
+            'loggedIn',
+            'company'
         ]
     })
     ],

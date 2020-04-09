@@ -15,6 +15,7 @@
     import Video from '../components/Video'
     import {v4 as uuidv4} from 'uuid';
     import {EventBus} from '../Event'
+    import {mapActions} from "vuex";
 
     export default {
         data() {
@@ -27,11 +28,15 @@
             Video,
         },
         methods: {
+            ...mapActions(['loadCompanyById']),
             submitUsername() {
                 this.authenticated = true;
                 this.username = uuidv4();
-                console.log('call initiated by click');
-                EventBus.$emit('show_room', uuidv4());
+                const companyId = this.$route.query.companyId;
+                this.loadCompanyById(companyId).then(() => {
+                    console.log('loaded company succesfully - creating new room now');
+                    EventBus.$emit('show_room', uuidv4());
+                })
             },
         }
     }

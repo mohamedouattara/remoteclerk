@@ -11,38 +11,24 @@
 require('dotenv').load();
 const {v4: uuidv4} = require('uuid');
 
-const videoController = require('./app/controllers/video.controller');
 
 var path = require('path');
 var cors = require('cors');
+const bodyParser = require("body-parser");
 var AccessToken = require('twilio').jwt.AccessToken;
 var VideoGrant = AccessToken.VideoGrant;
 var VoiceGrant = AccessToken.VoiceGrant;
-const mongoose = require('mongoose');
 
 var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
+const videoController = require('./app/controllers/video.controller')(io);
+
 app.set('port', process.env.PORT || 3000)
+app.use(bodyParser.json());
 
 // Max. period that a Participant is allowed to be in a Room (currently 14400 seconds or 4 hours)
 const MAX_ALLOWED_SESSION_DURATION = 14400;
-
-
-const uristring =
-    process.env.MONGODB_URI || process.env.MONGOLAB_URI ||
-    'mongodb://localhost/test';
-
-
-console.log('mongodb started on : ' + uristring);
-//  var options = { server: { socketOptions: { keepAlive: 1 } } };
-mongoose.connect(uristring, function (err, res) {
-    if (err) {
-        console.log('ERROR connecting to: ' + uristring + '. ' + err);
-    } else {
-        console.log('Succeeded connected to: ' + uristring);
-    }
-});
 
 // Create Express webapp.
 const whitelist = ['http://localhost:8080', 'http://example2.com'];
@@ -68,6 +54,7 @@ app.get('/', (request, response) => {
 
 
 app.get('/test', videoController.test);
+app.get('/sessions', videoController.index);
 
 /**
  * Generate an Access Token for a chat application user - it generates a random
@@ -107,8 +94,6 @@ app.get('/token', function (request, response) {
 });
 
 app.post('/session', (req, res) => {
-    io.emit('client_room_created', {id: id}); // This will emit the event to all connected sockets
-    return videoController.saveSession(req, res);
 
 })
 
@@ -126,6 +111,7 @@ io.on('connection', function (socket) {
     console.log('a user connected');
     socket.on('delete_room', function (id) {
         console.log('deleting room: ' + id);
+        videoController.deleteSession(id);
     });
 });
 

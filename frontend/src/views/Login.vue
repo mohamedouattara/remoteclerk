@@ -22,7 +22,7 @@
 
     export default {
         methods: {
-            ...mapActions(['setUserDetails', 'setLoggedIn'])
+            ...mapActions(['setUserDetails', 'setLoggedIn', 'loadCompany'])
         },
         mounted() {
             var uiConfig = {
@@ -37,6 +37,8 @@
                             if (authInfo.additionalUserInfo.isNewUser) {
                                 router.push('/registration');
                                 return false;
+                            } else {
+                                this.loadCompany();
                             }
 
                         }

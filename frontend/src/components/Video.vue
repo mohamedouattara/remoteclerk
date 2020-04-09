@@ -26,6 +26,9 @@
     import {EventBus} from '../Event'
     import Twilio, {createLocalVideoTrack} from 'twilio-video'
     import axios from 'axios'
+    import {BASE_URL} from "../../config";
+    import {mapActions} from "vuex";
+    import * as moment from "moment";
 
     export default {
         name: "Video",
@@ -59,12 +62,13 @@
             window.addEventListener('beforeunload', this.leaveRoomIfJoined);
         },
         methods: {
+            ...mapActions(['createSession']),
             async getAccessToken(room_name) {
                 console.log('fetching access token');
                 if (this.username !== 'admin') {
-                    return await axios.get(`http://localhost:3000/token?id=${room_name}&userType=client`);
+                    return await axios.get(`${BASE_URL}token?id=${room_name}&userType=client`);
                 } else {
-                    return await axios.get(`http://localhost:3000/token?id=${room_name}&userType=admin`);
+                    return await axios.get(`${BASE_URL}token?id=${room_name}&userType=admin`);
                 }
             },
             // Trigger log events
@@ -150,7 +154,10 @@
             createChat(room_name) {
                 this.loading = true;
                 const VueThis = this;
-                this.getAccessToken(room_name).then((data) => {
+                this.getAccessToken(room_name).then(async (data) => {
+                        if (this.username !== 'admin') {
+                          this.createSession({id: room_name, createdAt: moment().toDate(), state: 'ACTIVE'});
+                        }
                         VueThis.roomName = null;
                         const token = data.data.token;
                         const video = this.username === 'admin' ? {width: 400} : false;

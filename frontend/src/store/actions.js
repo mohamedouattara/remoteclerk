@@ -39,11 +39,34 @@ const loadCompany = ({commit, state}) => {
 
 };
 
+const loadCompanyById = ({commit, state}, companyId) => {
+    return new Promise((resolve, reject) => {
+        firebase.firestore().collection("companies").where('id', '==', companyId).get().then((querySnapshot) => {
+            commit('COMPANY', querySnapshot.docs.map(d => d.data())[0]);
+            resolve();
+        }).catch((error) => reject(error));
+    });
+
+};
+
+const createSession = ({state}, session) => {
+    return new Promise((resolve, reject) => {
+        const docRef = firebase.firestore().collection('companies');
+        docRef.doc(state.company.id).update({sessions: [...state.company.sessions || [], session]}).then(() => {
+            console.log('session created');
+            resolve();
+        }).catch(error => reject(error));
+    });
+};
+
+
 
 export default {
     logout,
     setUserDetails,
     setLoggedIn,
     registerCompany,
-    loadCompany
+    loadCompany,
+    createSession,
+    loadCompanyById
 }

@@ -12,8 +12,8 @@
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr v-for="c in rooms" v-bind:key="c.id">
+                        <tbody v-if="company.sessions">
+                        <tr v-for="c in company.sessions" v-bind:key="c.id">
                             <td>
                                 {{c.id}}
                             </td>
@@ -34,14 +34,17 @@
 </template>
 
 <script>
-    import {EventBus} from '../Event'
+    import {EventBus} from '../Event';
+    import axios from 'axios';
     import Video from "../components/Video";
     import Logs from "../components/Logs";
+    import {BASE_URL} from "../../config";
+    import {mapActions, mapState} from "vuex";
     export default {
         components: {Video, Logs},
         data() {
             return {
-                rooms: [{id: 'asdakdaödajda', time: '12:00'}]
+                rooms: []
             }
         },
         sockets: {
@@ -54,7 +57,14 @@
                 console.log(JSON.stringify(data))
             }
         },
+        computed: {
+            ...mapState(['company'])
+        },
+        mounted() {
+            this.loadCompanyById(this.company.id);
+        },
         methods: {
+            ...mapActions(['loadCompanyById']),
             showRoom(room) {
                 EventBus.$emit('show_room', room);
             },
