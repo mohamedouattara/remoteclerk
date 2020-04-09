@@ -29,9 +29,9 @@
             <b-row>
                 <b-col>
                     <h3>Integration</h3>
-                    <p>Paste this code onto your website</p>
+                    <p>Add this link to your website or onlineshop. If a user clicks on it, it will start a new video consultation.</p>
                     <code class="code">
-                        System.out("test")
+                        {{`${baseUrl}call?companyId=${company.id}`}}
                     </code>
                 </b-col>
             </b-row>
@@ -41,9 +41,14 @@
 
 <script>
     import {mapActions, mapState} from "vuex";
-
+    import {BASE_URL} from "../../config";
     export default {
         components: {},
+        data() {
+            return {
+                baseUrl: BASE_URL
+            }
+        },
         computed: {
             ...mapState(['company', 'user']),
         },
