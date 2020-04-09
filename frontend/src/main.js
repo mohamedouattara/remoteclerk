@@ -6,10 +6,11 @@ import store from "./store/store";
 import('./styles/style.scss');
 import VueSocketIO from 'vue-socket.io'
 import BootstrapVue from 'bootstrap-vue';
+import {BASE_URL} from "../config";
 
 Vue.use(new VueSocketIO({
     debug: true,
-    connection: 'http://localhost:3000',
+    connection: BASE_URL,
 }))
 
 Vue.use(Vuex);

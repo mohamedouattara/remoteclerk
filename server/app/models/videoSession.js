@@ -1,4 +1,5 @@
-'use strict';
+
+const moment = require('moment');
 
 /**
  * Module dependencies.
@@ -13,14 +14,10 @@ const Schema = mongoose.Schema;
  */
 
 const VideoSessionSchema = new Schema({
-    sessionId: String,
-    conversationId: String,
-    messages: [{createdAt: {type: Date, default: Date.now}, text: String, intent: String}],
+    id: String,
     userId: String,
-    isHumanConversation: {type: Boolean},
-    isYesOrNoQuestion: {type: Boolean},
-    createdAt: {type: Date, default: Date.now},
-    tracking: {linkClicked: {type: Boolean}},
+    createdAt: {type: Date, default: moment()},
+    state: String
 });
 
 
@@ -30,10 +27,6 @@ const VideoSessionSchema = new Schema({
  */
 
 VideoSessionSchema.methods = {
-
-    /**
-     * Save tweet
-     */
 
     uploadAndSave: function (session) {
         return this.save();
