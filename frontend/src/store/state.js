@@ -3,4 +3,5 @@ export default {
     loggedIn: false,
     user: '',
     company: null,
+    currentSession: null,
 };

@@ -136,12 +136,12 @@
             leaveRoomIfJoined() {
                 if (this.activeRoom) {
                     this.activeRoom.disconnect();
+                    this.deactivateSession();
                     this.disconnected = true;
                     if (this.localTrack) {
                         this.localTrack.stop();
                         document.getElementById('localTrack').innerHTML = "";
                     }
-                    this.deactivateSession();
                     this.$socket.emit('delete_room', this.roomName);
                     this.roomName = '';
 

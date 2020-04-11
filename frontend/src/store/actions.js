@@ -63,12 +63,12 @@ const createSession = ({commit, state}, session) => {
     });
 };
 
-const deactivateSession = ({state}, session) => {
-    return new Promise((resolve, reject) => {
+const deactivateSession = ({state}) => {
+            return new Promise((resolve, reject) => {
         const docRef = firebase.firestore().collection('companies');
         docRef.doc(state.company.id).get().then((doc) => {
             const company = doc.data();
-            const index = company.sessions.findIndex((s) => s.id === session.id);
+            const index = company.sessions.findIndex((s) => s.id === state.currentSession.id);
             company.sessions[index].state = 'INACTIVE';
             docRef.doc(state.company.id).update({sessions: company.sessions}).then((doc) => {
                 resolve();
