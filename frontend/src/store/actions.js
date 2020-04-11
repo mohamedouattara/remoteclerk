@@ -49,15 +49,30 @@ const loadCompanyById = ({commit, state}, companyId) => {
 
 };
 
-const createSession = ({state}, session) => {
+const createSession = ({commit, state}, session) => {
     return new Promise((resolve, reject) => {
         const docRef = firebase.firestore().collection('companies');
-        docRef.doc(state.company.id).update({sessions: [...state.company.sessions || [], session]}).then(() => {
-            console.log('session created');
+        docRef.doc(state.company.id).update({sessions: [...state.company.sessions || [], session]}).then((doc) => {
+            commit('CURRENT_SESSION', session);
             resolve();
         }).catch(error => reject(error));
     });
 };
+
+const deactivateSession = ({state}, session) => {
+    return new Promise((resolve, reject) => {
+        const docRef = firebase.firestore().collection('companies');
+        docRef.doc(state.company.id).get().then((doc) => {
+            const company = doc.data();
+            const index = company.sessions.findIndex((s) => s.id === session.id);
+            company.sessions[index].state = 'INACTIVE';
+            docRef.doc(state.company.id).update({sessions: company.sessions}).then((doc) => {
+                resolve();
+            }).catch(error => reject(error));
+        }).catch(error => reject(error));
+    });
+};
+
 
 
 
@@ -68,5 +83,6 @@ export default {
     registerCompany,
     loadCompany,
     createSession,
-    loadCompanyById
+    loadCompanyById,
+    deactivateSession
 }

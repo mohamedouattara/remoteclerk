@@ -7,6 +7,13 @@ import('./styles/style.scss');
 import VueSocketIO from 'vue-socket.io'
 import BootstrapVue from 'bootstrap-vue';
 import {BASE_URL} from "../config";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {faPhoneAlt} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faPhoneAlt)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(new VueSocketIO({
     debug: true,

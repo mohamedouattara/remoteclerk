@@ -11,6 +11,9 @@ export const mutations = {
     'COMPANY': (state, company) => {
         state.company = company;
     },
+    'CURRENT_SESSION': (state, session) => {
+        state.currentSession = session;
+    },
 };
 
 export default mutations;

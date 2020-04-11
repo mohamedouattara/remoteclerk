@@ -31,7 +31,7 @@
                     <h3>Integration</h3>
                     <p>Add this link to your website or onlineshop. If a user clicks on it, it will start a new video consultation.</p>
                     <code class="code">
-                        {{`${baseUrl}call?companyId=${company.id}`}}
+                        {{getWindowLocation + '/#/call?companyId='+ company.id}}
                     </code>
                 </b-col>
             </b-row>
@@ -41,16 +41,13 @@
 
 <script>
     import {mapActions, mapState} from "vuex";
-    import {BASE_URL} from "../../config";
     export default {
         components: {},
-        data() {
-            return {
-                baseUrl: BASE_URL
-            }
-        },
         computed: {
             ...mapState(['company', 'user']),
+            getWindowLocation() {
+                return window.location.origin;
+            }
         },
         methods: {
             ...mapActions(['loadCompany'])

@@ -4,6 +4,7 @@
             <b-col>
                 <span v-if="loading"> Loading... {{roomName}}</span>
                 <span v-else-if="!loading && roomName"> Connected to {{roomName}}</span>
+                <span v-else-if="disconnected">Call ended</span>
             </b-col>
         </b-row>
         <b-row class="remote_video_container">
@@ -27,7 +28,7 @@
     import Twilio, {createLocalVideoTrack} from 'twilio-video'
     import axios from 'axios'
     import {BASE_URL} from "../../config";
-    import {mapActions} from "vuex";
+    import {mapActions, mapState} from "vuex";
     import * as moment from "moment";
 
     export default {
@@ -35,6 +36,7 @@
         data() {
             return {
                 loading: false,
+                disconnected: false,
                 data: {},
                 localTrack: false,
                 remoteTrack: '',
@@ -61,8 +63,11 @@
             // disconnect from the room, if joined.
             window.addEventListener('beforeunload', this.leaveRoomIfJoined);
         },
+        computed: {
+            ...mapState(['currentSession']),
+        },
         methods: {
-            ...mapActions(['createSession']),
+            ...mapActions(['createSession', 'deactivateSession']),
             async getAccessToken(room_name) {
                 console.log('fetching access token');
                 if (this.username !== 'admin') {
@@ -122,10 +127,12 @@
             leaveRoomIfJoined() {
                 if (this.activeRoom) {
                     this.activeRoom.disconnect();
+                    this.disconnected = true;
                     if (this.localTrack) {
                         this.localTrack.stop();
                         document.getElementById('localTrack').innerHTML = "";
                     }
+                    this.deactivateSession();
                     this.$socket.emit('delete_room', this.roomName);
                     this.roomName = '';
 

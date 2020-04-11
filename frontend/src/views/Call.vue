@@ -1,14 +1,22 @@
 <template>
-    <div class="container chat_container" id="app">
+    <b-container>
         <Video :username="username"/>
-        <div class="row">
-            <b-col>
+        <b-row class="justify-content-md-center">
+            <b-col class="col-6">
                 <div v-if="!authenticated">
-                    <b-button variant="success" @click="submitUsername()">Start Call</b-button>
+                    <h3>Get the same shopping experience from home as in the store!</h3>
+                    <img src="@/assets/sample_img.png">
+                    <div class="video-disclaimer"><img class="video-img" src="@/assets/no-video.svg"/>Your camera image won't be
+                        transmitted
+                    </div>
+                    <b-button class="call-btn" variant="success" @click="submitUsername()">
+                        <font-awesome-icon class="phone-icon" icon="phone-alt"></font-awesome-icon>
+                        Start video consultation
+                    </b-button>
                 </div>
             </b-col>
-        </div>
-    </div>
+        </b-row>
+    </b-container>
 </template>
 
 <script>
@@ -50,6 +58,26 @@
     .username {
         margin: 12px auto 7px auto;
         color: wheat;
+    }
+
+    .video-disclaimer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+    }
+
+    .video-img {
+        height: 50px;
+        margin-right: 1rem;
+    }
+
+    .phone-icon {
+        margin-right: 5px;
+    }
+
+    .call-btn {
+        margin-top: 1rem;
     }
 
 </style>

@@ -9,6 +9,7 @@
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">State</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -18,7 +19,13 @@
                                 {{c.id}}
                             </td>
                             <td>
-                                <button class="button button-primary button-shadow" @click="showRoom(c.id)">Answer call</button>
+                                {{c.state}}
+                            </td>
+                            <td>
+                                <button v-if="c.state === 'ACTIVE'" class="button button-primary button-shadow"
+                                        @click="showRoom(c.id)">Answer
+                                    call
+                                </button>
                             </td>
                         </tr>
                         </tbody>
@@ -40,6 +47,7 @@
     import Logs from "../components/Logs";
     import {BASE_URL} from "../../config";
     import {mapActions, mapState} from "vuex";
+
     export default {
         components: {Video, Logs},
         data() {
