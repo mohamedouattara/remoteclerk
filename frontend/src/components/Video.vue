@@ -9,16 +9,20 @@
                 <span v-else-if="disconnected"><b>Call ended</b></span>
             </b-col>
         </b-row>
-        <b-row class="remote_video_container">
-            <div id="remoteTrack"></div>
+        <b-row class="justify-content-center">
+            <b-col class="col-8">
+                <div id="remoteTrack"></div>
+            </b-col>
         </b-row>
         <div class="spacing"></div>
-        <b-row v-if="username === 'admin'">
-            <div id="localTrack">
-            </div>
+        <b-row v-if="username === 'admin'" class="justify-content-center">
+            <b-col class="col-8">
+                <div id="localTrack">
+                </div>
+            </b-col>
         </b-row>
         <b-row>
-            <b-col v-if="activeRoom">
+            <b-col v-if="activeRoom && !loading">
                 <b-button variant="danger" @click="leaveRoomIfJoined()">
                     <font-awesome-icon class="phone-icon"
                                        icon="phone-slash"></font-awesome-icon>
@@ -154,6 +158,7 @@
             participantConnected(participant, previewContainer) {
                 participant.tracks.forEach((publication) => {
                     this.trackPublished(publication, previewContainer);
+                    this.loading = false;
                 });
                 participant.on('trackPublished', (publication) => {
                     this.trackPublished(publication, previewContainer);
@@ -172,7 +177,7 @@
                         }
                         VueThis.roomName = null;
                         const token = data.data.token;
-                        const video = this.username === 'admin' ? {width: 400} : false;
+                        const video = this.username === 'admin' ? {width: 600} : false; //TODO responsive
                         let connectOptions = {
                             name: room_name,
                             // logLevel: 'debug',
@@ -254,14 +259,7 @@
 </script>
 
 <style lang="scss">
-    .remote_video_container {
-        left: 0;
-        margin: 0;
-    }
-
     #localTrack video {
-        margin: 0px;
-        max-width: 50% !important;
         background-repeat: no-repeat;
     }
 

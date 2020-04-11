@@ -1,15 +1,18 @@
 <template>
-    <div class="container">
+    <b-container>
         <section class="hero">
-            <div class="hero-inner">
-                <div class="hero-copy">
-                    <h1 class="hero-title mt-0 is-revealing">You Call Cockpit</h1>
+            <b-row class="justify-content-center">
+                <b-col class="col-8">
+                    <h1 class="hero-title mt-0 is-revealing">Cockpit</h1>
+                    <Video username="admin"/>
+                    <Logs></Logs>
                     <h3>Queue</h3>
                     <table>
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">State</th>
+                            <th scope="col">Created at</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -22,6 +25,9 @@
                                 {{c.state}}
                             </td>
                             <td>
+                                {{getCreatedAtDateTime(c.createdAt)}}
+                            </td>
+                            <td>
                                 <button v-if="c.state === 'ACTIVE'" class="button button-primary button-shadow"
                                         @click="showRoom(c.id)">Answer
                                     call
@@ -30,14 +36,10 @@
                         </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-            <div class="row">
-                <Video username="admin"/>
-                <Logs></Logs>
-            </div>
+                </b-col>
+            </b-row>
         </section>
-    </div>
+    </b-container>
 </template>
 
 <script>
@@ -47,6 +49,7 @@
     import Logs from "../components/Logs";
     import {BASE_URL} from "../../config";
     import {mapActions, mapState} from "vuex";
+    import * as moment from "moment";
 
     export default {
         components: {Video, Logs},
@@ -66,7 +69,7 @@
             }
         },
         computed: {
-            ...mapState(['company'])
+            ...mapState(['company']),
         },
         mounted() {
             this.loadCompanyById(this.company.id);
@@ -76,7 +79,9 @@
             showRoom(room) {
                 EventBus.$emit('show_room', room);
             },
-        },
+            getCreatedAtDateTime(c) {
+                return moment.unix(c.seconds).format('YYYY-MM-DD HH:mm');
+            },},
     }
 </script>
 
