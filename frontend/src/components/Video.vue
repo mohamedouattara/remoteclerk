@@ -2,9 +2,11 @@
     <b-container fluid>
         <b-row class="roomTitle">
             <b-col>
-                <span v-if="loading"> Loading... {{roomName}}</span>
-                <span v-else-if="!loading && roomName"> Connected to {{roomName}}</span>
-                <span v-else-if="disconnected">Call ended</span>
+                <div v-if="loading" class="loading-wrapper">
+                    <b-spinner small type="grow"></b-spinner>
+                    <b>Calling...</b>
+                </div>
+                <span v-else-if="disconnected"><b>Call ended</b></span>
             </b-col>
         </b-row>
         <b-row class="remote_video_container">
@@ -17,7 +19,10 @@
         </b-row>
         <b-row>
             <b-col v-if="activeRoom">
-                <b-button variant="danger" @click="leaveRoomIfJoined()">Stop Call</b-button>
+                <b-button variant="danger" @click="leaveRoomIfJoined()">
+                    <font-awesome-icon class="phone-icon"
+                                       icon="phone-slash"></font-awesome-icon>
+                </b-button>
             </b-col>
         </b-row>
     </b-container>
@@ -163,7 +168,7 @@
                 const VueThis = this;
                 this.getAccessToken(room_name).then(async (data) => {
                         if (this.username !== 'admin') {
-                          this.createSession({id: room_name, createdAt: moment().toDate(), state: 'ACTIVE'});
+                            this.createSession({id: room_name, createdAt: moment().toDate(), state: 'ACTIVE'});
                         }
                         VueThis.roomName = null;
                         const token = data.data.token;
@@ -189,7 +194,6 @@
                             // set active toom
                             VueThis.activeRoom = room;
                             VueThis.roomName = room_name;
-                            VueThis.loading = false;
 
                             // Attach the Tracks of the Room's Participants.
                             var remoteMediaContainer = document.getElementById('remoteTrack');
@@ -249,7 +253,7 @@
     }
 </script>
 
-<style>
+<style lang="scss">
     .remote_video_container {
         left: 0;
         margin: 0;
@@ -268,6 +272,15 @@
 
     .roomTitle {
         padding: 4px;
-        color: dodgerblue;
+    }
+
+    .loading-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .spinner-grow {
+            margin-right: 5px;
+        }
     }
 </style>
