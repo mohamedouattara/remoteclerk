@@ -9,7 +9,7 @@
                     <h3>Queue</h3>
                     <b-table striped hover :items="company.sessions" :fields="fields" :responsive="true">
                         <template v-slot:cell(actions)="row">
-                            <button v-if="row.item.state === 'ACTIVE'" class="button button-primary button-shadow"
+                            <button class="button button-primary button-shadow"
                                     @click="showRoom(row.item)">Answer
                                 call
                             </button>
@@ -34,7 +34,7 @@
         components: {Video, Logs},
         data() {
             return {
-                fields: [{
+                fields: ['id',{
                     key: 'createdAt', label: 'createdAt', formatter: value => {
                         return this.getCreatedAtDateTime(value)
                     }
@@ -57,8 +57,8 @@
             this.loadCompanyById(this.company.id);
         },
         methods: {
-            ...mapActions(['loadCompanyById', 'setCurrentSession']),
-            showRoom(session) {
+            ...mapActions(['loadCompanyById', 'setCurrentSession']) ,
+             showRoom(session) {
                 EventBus.$emit('show_room', session.id);
                 this.setCurrentSession(session);
             },

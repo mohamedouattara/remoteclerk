@@ -57,7 +57,6 @@
         props: ['username'], // props that will be passed to this component
         created() {
             EventBus.$on('show_room', (room_name) => {
-                //TODO save room to db so admin can see it
                 console.log('creating new room with name ' + room_name);
                 this.createChat(room_name);
             });

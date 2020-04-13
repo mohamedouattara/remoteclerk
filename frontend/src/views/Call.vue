@@ -1,6 +1,6 @@
 <template>
     <b-container>
-        <Video :username="username"/>
+        <Video :username="roomName"/>
         <b-row class="justify-content-md-center">
             <b-col class="col-md-6 col-12">
                 <div v-if="!authenticated">
@@ -24,26 +24,36 @@
     import {v4 as uuidv4} from 'uuid';
     import {EventBus} from '../Event'
     import {mapActions} from "vuex";
+    import router from '@/router'
 
     export default {
         data() {
             return {
-                username: "",
+                roomName: "",
                 authenticated: false
             }
         },
         components: {
             Video,
         },
+        mounted() {
+            const room  = this.$route.query.room;
+            if (room) {
+                //TODO join existing room
+                EventBus.$emit('show_room', room);
+                this.authenticated = true;
+            }
+        },
         methods: {
             ...mapActions(['loadCompanyById']),
             submitUsername() {
                 this.authenticated = true;
-                this.username = uuidv4();
+                this.roomName = uuidv4();
                 const companyId = this.$route.query.companyId;
                 this.loadCompanyById(companyId).then(() => {
                     console.log('loaded company succesfully - creating new room now');
                     EventBus.$emit('show_room', uuidv4());
+                    router.push(`/call?companyId=${companyId}&room=${this.roomName}`);
                 })
             },
         }
