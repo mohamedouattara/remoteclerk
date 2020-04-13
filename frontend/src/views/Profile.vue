@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <section class="hero">
+        <section>
             <b-row class="justify-content-center">
                 <b-col class="col-md-6">
                     <h1 class="hero-title mt-0 is-revealing">Your account</h1>
@@ -64,6 +64,7 @@
 
         td {
             width: 50%;
+            word-wrap: break-word;
         }
 
         .attribute {

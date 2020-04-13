@@ -1,8 +1,8 @@
 <template>
     <b-container>
-        <section class="hero">
+        <section>
             <b-row class="justify-content-center">
-                <b-col class="col-8">
+                <b-col class="col-12">
                     <h1 class="hero-title mt-0 is-revealing">Cockpit</h1>
                     <Video username="admin"/>
                     <Logs></Logs>
@@ -34,7 +34,7 @@
         components: {Video, Logs},
         data() {
             return {
-                fields: [{key: 'id', label: 'Id'}, {
+                fields: [{
                     key: 'createdAt', label: 'createdAt', formatter: value => {
                         return this.getCreatedAtDateTime(value)
                     }
