@@ -2,7 +2,7 @@
     <b-container>
         <Video :username="username"/>
         <b-row class="justify-content-md-center">
-            <b-col class="col-6">
+            <b-col class="col-md-6 col-12">
                 <div v-if="!authenticated">
                     <h3>Get the same shopping experience from home as in the store!</h3>
                     <img src="@/assets/sample_img.png">
@@ -77,7 +77,11 @@
     }
 
     .call-btn {
-        margin-top: 1rem;
+        margin-top: 2rem;
+    }
+
+    .container {
+        padding-bottom: 2rem;
     }
 
 </style>

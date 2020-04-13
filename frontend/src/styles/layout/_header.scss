@@ -5,14 +5,26 @@
   width: 100%;
   z-index: 99;
 
-
-  button {
-    background-color: #2a3642;
-    color: white !important;
-  }
 }
 
 
 .logo-img {
   height: 60px;
 }
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  &.dropdown-toggle {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+;
+
+}
+
+

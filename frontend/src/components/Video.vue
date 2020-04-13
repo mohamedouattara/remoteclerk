@@ -14,7 +14,6 @@
                 <div id="remoteTrack"></div>
             </b-col>
         </b-row>
-        <div class="spacing"></div>
         <b-row v-if="username === 'admin'" class="justify-content-center">
             <b-col class="col-8">
                 <div id="localTrack">
@@ -73,7 +72,6 @@
             window.addEventListener('beforeunload', this.leaveRoomIfJoined);
         },
         computed: {
-            ...mapState(['currentSession']),
         },
         methods: {
             ...mapActions(['createSession', 'deactivateSession']),

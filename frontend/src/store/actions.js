@@ -63,6 +63,10 @@ const createSession = ({commit, state}, session) => {
     });
 };
 
+const setCurrentSession = ({commit}, session) => {
+    commit('CURRENT_SESSION', session);
+};
+
 const deactivateSession = ({state}) => {
             return new Promise((resolve, reject) => {
         const docRef = firebase.firestore().collection('companies');
@@ -88,5 +92,6 @@ export default {
     loadCompany,
     createSession,
     loadCompanyById,
-    deactivateSession
+    deactivateSession,
+    setCurrentSession
 }

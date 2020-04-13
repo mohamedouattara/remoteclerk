@@ -21,16 +21,16 @@
             <section class="features section text-center">
                 <div class="container">
                     <div class="features-inner section-inner has-top-divider">
-                        <div class="features-header text-center">
-                            <div class="container-sm">
+                        <b-row class="justify-content-center">
+                            <b-col class="col-md-8 col-12">
                                 <h2 class="section-title mt-0">Problem</h2>
                                 <p class="section-paragraph mb-0">Covid-19 is going to push the retail marketplace faster than it has been
                                     moving
                                     toward a more remote experience. Stores and showrooms are closed but online shops are still open.
                                     However, product categories like furniture or sports gear usually require consultation by an experienced
                                     shop-employee before the purchase. </p>
-                            </div>
-                        </div>
+                            </b-col>
+                        </b-row>
                     </div>
                     <div class="features-inner section-inner has-top-divider">
                         <div class="features-header text-center">
@@ -111,7 +111,7 @@
                                             <div class="pricing-table-header mb-24 pb-24">
                                                 <div class="pricing-table-title h4 mt-0 mb-16">Per customer call</div>
                                                 <div class="pricing-table-price"><span class="pricing-table-price-currency">$</span><span
-                                                        class="pricing-table-price-amount h1">0.50</span>
+                                                        class="pricing-table-price-amount h1">4.50</span>
                                                 </div>
                                             </div>
                                             <ul class="pricing-table-features list-reset text-xs">
