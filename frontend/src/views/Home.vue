@@ -78,9 +78,9 @@
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <h2>👨‍💼</h2>
-                                    <h4 class="feature-title">Availability check</h4>
-                                    <p class="text-sm">Let customers know when all of your store clerks are busy.</p>
-                                </div>
+                                    <h4 class="feature-title">Offer expertise</h4>
+                                    <p class="text-sm">Offer additional information about the material or functionality of a
+                                        product. The customer gets the same experience as he would get it in the real shop.</p></div>
                             </div>
                         </div>
                     </div>

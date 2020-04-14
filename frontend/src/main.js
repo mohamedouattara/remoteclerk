@@ -8,10 +8,10 @@ import VueSocketIO from 'vue-socket.io'
 import BootstrapVue from 'bootstrap-vue';
 import {BASE_URL} from "../config";
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faPhoneAlt, faPhoneSlash} from '@fortawesome/free-solid-svg-icons'
+import {faPhoneAlt, faPhoneSlash, faVideo, faVideoSlash} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faPhoneAlt, faPhoneSlash)
+library.add(faPhoneAlt, faPhoneSlash, faVideoSlash, faVideo)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

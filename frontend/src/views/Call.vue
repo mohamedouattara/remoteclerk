@@ -6,7 +6,8 @@
                 <div v-if="!authenticated">
                     <h3>Get the same shopping experience from home as in the store!</h3>
                     <img src="@/assets/sample_img.png">
-                    <div class="video-disclaimer"><img class="video-img" src="@/assets/no-video.svg"/>Your camera image won't be
+                    <div class="video-disclaimer"><font-awesome-icon class="phone-icon" icon="video-slash"></font-awesome-icon>Your camera
+                    image won't be
                         transmitted
                     </div>
                     <b-button class="call-btn" variant="success" @click="submitUsername()">

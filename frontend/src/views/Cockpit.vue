@@ -9,10 +9,8 @@
                     <h3>Queue</h3>
                     <b-table striped hover :items="company.sessions" :fields="fields" :responsive="true">
                         <template v-slot:cell(actions)="row">
-                            <button class="button button-primary button-shadow"
-                                    @click="showRoom(row.item)">Answer
-                                call
-                            </button>
+                            <b-button v-if="row.item.state === 'ACTIVE'" variant="success"
+                                    @click="showRoom(row.item)"><font-awesome-icon class="phone-icon" icon="phone-alt"></font-awesome-icon></b-button>
                         </template>
                     </b-table>
                 </b-col>

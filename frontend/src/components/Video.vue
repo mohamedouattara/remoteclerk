@@ -71,8 +71,7 @@
             // disconnect from the room, if joined.
             window.addEventListener('beforeunload', this.leaveRoomIfJoined);
         },
-        computed: {
-        },
+        computed: {},
         methods: {
             ...mapActions(['createSession', 'deactivateSession']),
             async getAccessToken(room_name) {
@@ -263,6 +262,11 @@
 <style lang="scss">
     #localTrack video {
         background-repeat: no-repeat;
+    }
+
+    #localTrack, #remoteTrack {
+        display: flex;
+        justify-content: center;
     }
 
     .spacing {
