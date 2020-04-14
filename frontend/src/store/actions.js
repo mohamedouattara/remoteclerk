@@ -83,6 +83,15 @@ const deactivateSession = ({state}) => {
     });
 };
 
+const activateWidget = ({commit, state}, isActive) => {
+    return new Promise((resolve, reject) => {
+        const docRef = firebase.firestore().collection('companies');
+        docRef.doc(state.company.id).update({widgetActive: isActive}).then((doc) => {
+            commit('WIDGET_ACTIVE', isActive);
+            resolve();
+        }).catch(error => reject(error));
+    });
+};
 
 
 
@@ -95,5 +104,6 @@ export default {
     createSession,
     loadCompanyById,
     deactivateSession,
-    setCurrentSession
+    setCurrentSession,
+    activateWidget,
 }

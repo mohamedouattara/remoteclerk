@@ -14,6 +14,9 @@ export const mutations = {
     'CURRENT_SESSION': (state, session) => {
         state.currentSession = session;
     },
+    'WIDGET_ACTIVE': (state, active) => {
+        state.company.widgetActive = active;
+    }
 };
 
 export default mutations;

@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <section>
-            <b-row class="justify-content-center">
+            <h2>Your account</h2>
+            <b-row>
                 <b-col class="col-md-6">
-                    <h1 class="hero-title mt-0 is-revealing">Your account</h1>
                     <table>
                         <tbody>
                         <tr v-if="company">
@@ -26,6 +26,16 @@
                     </table>
                 </b-col>
             </b-row>
+            <b-row>
+                <b-col>
+                    <h2 class="hero-title mt-0 is-revealing">Activation</h2>
+                    <p>Activate or deactivate the widget on your site. We will add a feature for displaying the widget during your
+                    opening hours soon.</p>
+                    <b>Widget active : {{ company.widgetActive }}</b>
+                    <b-form-checkbox :checked="company.widgetActive" name="check-button" @change="activationChanged" switch>
+                    </b-form-checkbox>
+                </b-col>
+            </b-row>
             <b-row class="justify-content-center">
                 <b-col class="col-12">
                     <h2>Integration</h2>
@@ -36,7 +46,7 @@
                     </code>
                     <h3>Widget</h3>
                     <p>You could also add our call widget to your website. Just copy the following code to your website and you are
-                    ready to go. The sample widget is displayed at the bottom right of this page.</p>
+                        ready to go. The sample widget is displayed at the bottom right of this page.</p>
 
                     <figure>
                     <pre>
@@ -124,16 +134,28 @@
 
     export default {
         components: {},
+        data() {
+            return {
+                time: '',
+                checked: null,
+            }
+        },
         computed: {
             ...mapState(['company', 'user']),
             getCallUrl() {
-                return window.location.origin + '/#/call?companyId='+ this.company.id;
+                return window.location.origin + '/#/call?companyId=' + this.company.id;
             }
         },
         methods: {
-            ...mapActions(['loadCompany']),
+            ...mapActions(['loadCompany', 'activateWidget']),
             openCallPage() {
-                router.push('/call?companyId='+ this.company.id);
+                router.push('/call?companyId=' + this.company.id);
+            },
+            saveOpeningHours() {
+
+            },
+            activationChanged(value) {
+                this.activateWidget(value);
             }
         },
         mounted() {
@@ -142,6 +164,11 @@
     }
 </script>
 <style lang="scss" scoped>
+
+    .container {
+        text-align: left;
+    }
+
     table {
         table-layout: fixed;
         width: 100%;
@@ -205,5 +232,9 @@
 
     h3 {
         margin-top: 1rem;
+    }
+
+    .row {
+        margin-bottom: 3rem;
     }
 </style>
