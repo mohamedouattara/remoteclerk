@@ -38,6 +38,7 @@
     import {BASE_URL} from "../../config";
     import {mapActions, mapState} from "vuex";
     import * as moment from "moment";
+    import router from '@/router';
 
     export default {
         name: "Video",
@@ -174,7 +175,7 @@
                         }
                         VueThis.roomName = null;
                         const token = data.data.token;
-                        const video = this.username === 'admin' ? {width: 600} : false; //TODO responsive
+                        const video = this.username === 'admin' ? {width: window.innerWidth - 50} : false; //TODO responsive
                         let connectOptions = {
                             name: room_name,
                             // logLevel: 'debug',
@@ -237,6 +238,10 @@
                                 room.participants.forEach(this.detachParticipantTracks);
                                 this.activeRoom = null;
                             });
+                        }).catch(error => {
+                            if (error.message === 'Permission denied') {
+                                router.push('/permission')
+                            }
                         });
                         //if local preview is not active, create it
                         if (!VueThis.localTrack && this.username === 'admin') {

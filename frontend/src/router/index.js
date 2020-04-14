@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Profile from "../views/Profile";
+import Permission from "../views/Permission";
 
 Vue.use(VueRouter)
 
@@ -40,7 +41,13 @@ const routes = [
         path: '/profile',
         name: 'Profile',
         component: Profile
+    },
+    {
+        path: '/permission',
+        name: 'Permission',
+        component: Permission
     }
+
 ]
 
 const router = new VueRouter({

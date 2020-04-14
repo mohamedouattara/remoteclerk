@@ -43,9 +43,11 @@ const loadCompanyById = ({commit, state}, companyId) => {
     return new Promise((resolve, reject) => {
         firebase.firestore().collection("companies").where('id', '==', companyId).get().then((querySnapshot) => {
             const company = querySnapshot.docs.map(d => d.data())[0];
-            company.sessions = company.sessions.sort((left, right) => {
-                return right.createdAt.seconds - left.createdAt.seconds;
-            });
+            if (company.sessions && company.sessions.length > 0) {
+                company.sessions = company.sessions.sort((left, right) => {
+                    return right.createdAt.seconds - left.createdAt.seconds;
+                });
+            }
             commit('COMPANY', company);
             resolve();
         }).catch((error) => reject(error));
