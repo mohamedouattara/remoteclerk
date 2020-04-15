@@ -114,9 +114,7 @@
                                         <div class="pricing-table-main">
                                             <div class="pricing-table-header mb-24 pb-24">
                                                 <div class="pricing-table-title h4 mt-0 mb-16">Per customer call</div>
-                                                <div class="pricing-table-price"><span class="pricing-table-price-currency">$</span><span
-                                                        class="pricing-table-price-amount h1">2.50</span>
-                                                </div>
+
                                             </div>
                                             <ul class="pricing-table-features list-reset text-xs">
                                                 <li>
