@@ -4,7 +4,7 @@
         <b-navbar toggleable="sm">
             <div class="site-header-inner row">
                 <div>
-                    <b-navbar-brand>  <img src="@/assets/logo.png" class="logo-img"/></b-navbar-brand>
+                    <b-navbar-brand href="#/">  <img src="@/assets/logo.png" class="logo-img"/></b-navbar-brand>
                 </div>
                 <b-navbar-toggle target="nav_collapse"/>
                 <b-collapse is-nav id="nav_collapse" class="justify-content-end">

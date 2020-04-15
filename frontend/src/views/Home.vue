@@ -10,7 +10,8 @@
                             <h1 class="hero-title mt-0 is-revealing">Video consultation for retailers</h1>
                             <p class="hero-paragraph is-revealing">Bring your expertise from the store to your customers home</p>
                             <p class="hero-cta mb-0 is-revealing">
-                                <a class="button button-primary button-shadow" href="#/admin">Get started free</a>
+                                <a class="button button-primary button-shadow" v-if="loggedIn" href="#/profile">Get started</a>
+                                <a class="button button-primary button-shadow" v-if="!loggedIn" href="#/admin">Get started</a>
                             </p>
                         </div>
                         <div class="hero-illustration">
@@ -41,17 +42,31 @@
                         <div class="features-wrap">
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
-                                    <h2>❌ </h2>
-                                    <h4 class="feature-title">No App installation</h4>
-                                    <p class="text-sm">No app installation needed - everything is web-based. Works on smartphonse,
-                                        tablet and desktop.</p>
+                                    <h2>⏰</h2>
+                                    <h4 class="feature-title">Outside opening hours</h4>
+                                    <p class="text-sm">Offer your expertise to the people at home even if your store is already closed</p>
                                 </div>
+                            </div>
+                            <div class="feature is-revealing">
+                                <div class="feature-inner">
+                                    <h2>👨‍💼</h2>
+                                    <h4 class="feature-title">Offer expertise</h4>
+                                    <p class="text-sm">Offer additional information about the material or functionality of a
+                                        product. The customer gets the same experience as he would get it in the real shop.</p></div>
                             </div>
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
                                     <h2>🛒 </h2>
                                     <h4 class="feature-title">Up-/Crosselling</h4>
                                     <p class="text-sm">Suggest additional, complementary or higher-end products to your customer.</p>
+                                </div>
+                            </div>
+                            <div class="feature is-revealing">
+                                <div class="feature-inner">
+                                    <h2>❌ </h2>
+                                    <h4 class="feature-title">No App installation</h4>
+                                    <p class="text-sm">No app installation needed - everything is web-based. Works on smartphonse,
+                                        tablet and desktop.</p>
                                 </div>
                             </div>
                             <div class="feature is-revealing">
@@ -67,20 +82,6 @@
                                     <h4 class="feature-title">Easy to integrate</h4>
                                     <p class="text-sm">Easy to integrate widget for every online-shop.</p>
                                 </div>
-                            </div>
-                            <div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <h2>⏰</h2>
-                                    <h4 class="feature-title">Outside opening hours</h4>
-                                    <p class="text-sm">Offer your expertise to the people at home even if your store is already closed</p>
-                                </div>
-                            </div>
-                            <div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <h2>👨‍💼</h2>
-                                    <h4 class="feature-title">Offer expertise</h4>
-                                    <p class="text-sm">Offer additional information about the material or functionality of a
-                                        product. The customer gets the same experience as he would get it in the real shop.</p></div>
                             </div>
                         </div>
                     </div>
@@ -111,7 +112,7 @@
                                             <div class="pricing-table-header mb-24 pb-24">
                                                 <div class="pricing-table-title h4 mt-0 mb-16">Per customer call</div>
                                                 <div class="pricing-table-price"><span class="pricing-table-price-currency">$</span><span
-                                                        class="pricing-table-price-amount h1">4.50</span>
+                                                        class="pricing-table-price-amount h1">2.50</span>
                                                 </div>
                                             </div>
                                             <ul class="pricing-table-features list-reset text-xs">
@@ -127,7 +128,7 @@
                                             </ul>
                                         </div>
                                         <div class="pricing-table-cta">
-                                            <a class="button button-secondary button-shadow button-block" href="#">Get started</a>
+                                            <a class="button button-secondary button-shadow button-block" href="#/admin">Apply for beta</a>
                                         </div>
                                     </div>
                                 </div>
@@ -152,11 +153,14 @@
 </template>
 
 <script>
-    // @ is an alias to /src
+    import {mapState} from "vuex";
 
     export default {
         name: 'Home',
         components: {},
+        computed: {
+            ...mapState(['loggedIn']),
+        },
         mounted() {
             const accordionEl = document.getElementsByClassName('accordion-title')
 
