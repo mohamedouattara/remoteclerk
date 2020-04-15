@@ -51,7 +51,7 @@
 
                     <figure>
                         <code class="code">
-                            &lt;script src="https://remoteclerk.com/widget/"&gt;
+                            &lt;script src="https://theremoteclerk.com/widget/"&gt;
                             &lt;/script&gt;
                         </code>
                     </figure>
