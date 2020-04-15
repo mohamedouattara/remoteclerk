@@ -34,6 +34,9 @@
                         </b-row>
                     </div>
                     <div class="features-inner section-inner has-top-divider">
+                        <div class="teaser-img">
+                            <img src="@/assets/sample_img.png"/>
+                        </div>
                         <div class="features-header text-center">
                             <div class="container-sm">
                                 <h2 class="section-title mt-0">Benefits</h2>
@@ -180,3 +183,13 @@
         }
     }
 </script>
+<style lang="scss">
+    .teaser-img {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        img {
+            max-height: 500px;
+        }
+    }
+</style>
