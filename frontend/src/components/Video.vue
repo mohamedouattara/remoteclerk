@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid>
+    <b-container>
         <b-row class="roomTitle">
             <b-col>
                 <div v-if="loading" class="loading-wrapper">
@@ -9,13 +9,9 @@
                 <span v-else-if="disconnected"><b>Call ended</b></span>
             </b-col>
         </b-row>
-        <b-row class="justify-content-center">
-            <b-col class="col-8">
-                <div id="remoteTrack"></div>
-            </b-col>
-        </b-row>
+        <div id="remoteTrack"></div>
         <b-row v-if="username === 'admin'" class="justify-content-center">
-            <b-col class="col-8">
+            <b-col class="col-md-8 col-12">
                 <div id="localTrack">
                 </div>
             </b-col>
@@ -259,14 +255,14 @@
     }
 </script>
 
-<style lang="scss">
-    #localTrack video {
-        background-repeat: no-repeat;
-    }
+<style lang="scss" scoped>
 
     #localTrack, #remoteTrack {
         display: flex;
         justify-content: center;
+        margin-left: -30px;
+        margin-right: -30px;
+
     }
 
     .spacing {
